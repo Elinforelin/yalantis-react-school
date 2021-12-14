@@ -1,0 +1,15 @@
+.pagination {
+	display: inline-block;
+	width: 300px;
+	justify-content: space-between;
+	justify-items: center;
+	align-items: center;
+	font-family: "Red Hat Mono", monospace;
+	letter-spacing: 15px;
+	font-weight: 700;
+	padding: 10px;
+	font-size: 24px;
+}
+.active {
+	color: red;
+}

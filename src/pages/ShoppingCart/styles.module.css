@@ -1,0 +1,90 @@
+.wrapper {
+	width: 100%;
+	height: 423px;
+	margin: 0px auto;
+	border-radius: 6px;
+	display: flex;
+	justify-content: space-between;
+}
+.title {
+	width: 200px;
+	height: 60px;
+	border-bottom: 1px solid #e1e8ee;
+	padding: 20px 30px;
+	color: #5e6977;
+	font-size: 18px;
+	font-weight: 400;
+}
+.product {
+	padding: 20px 30px;
+	height: 120px;
+	display: flex;
+}
+.product img {
+	width: 70px;
+	height: 60px;
+}
+.wrapper ul {
+	list-style: none;
+	margin-top: 90px;
+}
+.removeBtn {
+	padding-top: 30px;
+	position: relative;
+	width: 30px;
+	height: 30px;
+	cursor: pointer;
+}
+.removeBtn button {
+	background-color: white;
+	border: none;
+}
+.addBtn {
+	position: relative;
+	padding-top: 30px;
+	width: 30px;
+	height: 30px;
+	cursor: pointer;
+}
+.addBtn button {
+	background-color: white;
+	border: none;
+}
+.deleteBtn {
+	padding: 30px 10px;
+	position: relative;
+	width: 30px;
+	height: 30px;
+	cursor: pointer;
+}
+.deleteBtn button {
+	border: none;
+	background-color: white;
+	color: red;
+	font-weight: 600;
+}
+.count {
+	padding-top: 30px;
+	border: none;
+	text-align: center;
+	width: 32px;
+	font-size: 16px;
+	color: #43484d;
+	font-weight: 300;
+}
+.sum {
+	padding: 28px 30px;
+	font-size: 20px;
+	color: #43484d;
+	font-weight: 300;
+	text-align: center;
+}
+.total {
+	padding: 28px 50px;
+	font-size: 30px;
+	color: #942332;
+	font-weight: 600;
+	text-align: center;
+	margin-top: 90px;
+	border-top: 1px solid gray;
+}
