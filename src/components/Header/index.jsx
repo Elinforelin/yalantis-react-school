@@ -1,19 +1,21 @@
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink, useLocation, useRouteMatch } from 'react-router-dom';
+import { routes } from '../../constants/routes';
 
-import classes from "./styles.module.css";
+import classes from './styles.module.css';
 
 const Header = ({ quantity }) => {
-	let location = useLocation();
+  let match = useRouteMatch(routes.shoppingCart);
 
-	return (
-		<div className={classes.wrapper}>
-			<NavLink to="/products">Products</NavLink>
-			{location.pathname !== "/shopping-cart" && (
-				<NavLink to="/shopping-cart">
-					Shoppind Cart: {!quantity ? "0" : quantity.count}
-				</NavLink>
-			)}
-		</div>
-	);
+  return (
+    <div className={classes.wrapper}>
+      <NavLink to={routes.productsList}>Products</NavLink>
+      {match === null && (
+        <NavLink to={routes.shoppingCart}>
+          Shoppind Cart: {!quantity ? '0' : quantity.count}
+        </NavLink>
+      )}
+    </div>
+  );
 };
+
 export default Header;

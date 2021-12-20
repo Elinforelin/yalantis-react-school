@@ -1,33 +1,17 @@
-import { Link } from 'react-router-dom';
 import classes from './styles.module.css';
-import Img from '../../assets/img/original.png';
-import Pagination from './../../components/Pagunation/index';
+import Pagination from './../../components/Pagination/index';
 import { useProductList } from './useProductList';
+import ProductItem from './ProductItem';
 
 const ProductsList = () => {
-  const { perPage, setProducts, pages, products, addToCart } = useProductList();
+  const { perPage, setProducts, pages, products } = useProductList();
 
   return (
     <div className={classes.wrapper}>
       <Pagination perPage={perPage} setProducts={setProducts} pages={pages} />
       <div className={classes.row}>
         {products.map((product) => (
-          <div key={product.id} className={classes.products}>
-            <Link to={`/products/${product.id}`}>
-              <img src={Img} alt="product" />
-              <div className={classes.name}>{product.name.toUpperCase()}</div>
-            </Link>
-            <div>
-              {product.price}
-              {'₴'}
-            </div>
-            <button
-              className={classes.addBtn}
-              onClick={() => addToCart(product)}
-            >
-              Add to cart
-            </button>
-          </div>
+          <ProductItem product={product} key={product.id} />
         ))}
       </div>
     </div>

@@ -13,10 +13,10 @@ export const useAddToCart = (setShoppingCart) => {
             : item
         );
         return productsWithCount;
-      } else {
-        return [...prevState, { ...product, count: 1 }];
       }
+      return [...prevState, { ...product, count: 1 }];
     });
   };
+
   return { addToCart }
 } 

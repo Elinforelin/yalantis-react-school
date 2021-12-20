@@ -3,7 +3,7 @@ import Img from '../../assets/img/original.png';
 import { useProductDetails } from './useProductDetails';
 
 const ProductDetails = () => {
-  const { product, addToCart } = useProductDetails();
+  const { product, addToCartClick } = useProductDetails();
 
   return (
     <div className={classes.wrapper}>
@@ -19,7 +19,7 @@ const ProductDetails = () => {
       </div>
 
       <div>
-        <button className={classes.addBtn} onClick={() => addToCart(product)}>
+        <button className={classes.addBtn} onClick={addToCartClick}>
           Add to cart
         </button>
       </div>

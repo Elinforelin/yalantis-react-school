@@ -32,7 +32,7 @@ export const useShoppingCart = () => {
     setShoppingCart((prev) => prev.filter((item) => item.id !== product.id));
   };
 
-  const total = useMemo(() => {
+  const totalSumOfProducts = useMemo(() => {
     return productsSumItem
       .reduce((acc, curr) => acc + curr.sum, 0)
       .toFixed(2)
@@ -44,6 +44,6 @@ export const useShoppingCart = () => {
     productsSumItem,
     removeFromCart,
     removeItem,
-    total
+    totalSumOfProducts
   }
 }

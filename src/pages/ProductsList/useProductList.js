@@ -1,12 +1,9 @@
-import { useContext, useState, useEffect } from 'react';
-import { ProductContext } from './../../context/ProductContext';
+import { useState, useEffect } from 'react';
+
 import { fetchApi } from './../../utils/fetch';
 import { endpoints } from './../../constants/endpoints';
-import { useAddToCart } from './../../hooks/useAddToCart';
-
 
 export const useProductList = () => {
-  const { setShoppingCart } = useContext(ProductContext);
 
   const [products, setProducts] = useState([]);
   const [perPage, setPerPage] = useState(0);
@@ -14,6 +11,7 @@ export const useProductList = () => {
 
   const pagesCount = Math.ceil(totalItems / perPage);
   let pages = [];
+
   for (let i = 1; i <= pagesCount; i++) {
     pages.push(i);
   }
@@ -26,12 +24,10 @@ export const useProductList = () => {
     });
   }, []);
 
-  const { addToCart } = useAddToCart(setShoppingCart);
   return {
     perPage,
     setProducts,
     pages,
     products,
-    addToCart
   }
 }

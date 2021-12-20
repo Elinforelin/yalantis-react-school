@@ -6,8 +6,13 @@ import classes from './styles.module.css';
 import { useShoppingCart } from './useShoppingCart';
 
 const ShoppingCart = () => {
-  const { addToCart, productsSumItem, removeFromCart, removeItem, total } =
-    useShoppingCart();
+  const {
+    addToCart,
+    productsSumItem,
+    removeFromCart,
+    removeItem,
+    totalSumOfProducts,
+  } = useShoppingCart();
 
   return (
     <div className={classes.wrapper}>
@@ -52,7 +57,7 @@ const ShoppingCart = () => {
         TOTAL
         <div>
           {'₴ '}
-          {total}
+          {totalSumOfProducts}
         </div>
       </div>
     </div>

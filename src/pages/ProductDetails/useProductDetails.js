@@ -21,8 +21,11 @@ export const useProductDetails = () => {
   }, [params.productId]);
 
   const { addToCart } = useAddToCart(setShoppingCart);
+
+  const addToCartClick = () => addToCart(product)
+
   return {
     product,
-    addToCart
+    addToCartClick
   }
 }
