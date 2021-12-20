@@ -4,7 +4,6 @@ import { fetchApi } from './../../utils/fetch';
 import { endpoints } from './../../constants/endpoints';
 
 export const useProductList = () => {
-
   const [products, setProducts] = useState([]);
   const [perPage, setPerPage] = useState(0);
   const [totalItems, setTotalItems] = useState(0);
@@ -29,5 +28,5 @@ export const useProductList = () => {
     setProducts,
     pages,
     products,
-  }
-}
+  };
+};

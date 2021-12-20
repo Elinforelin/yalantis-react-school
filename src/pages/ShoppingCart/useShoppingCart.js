@@ -1,7 +1,7 @@
 import { useContext, useMemo } from 'react';
 import { ProductContext } from '../../context/ProductContext';
 
-import { useAddToCart } from "../../hooks/useAddToCart";
+import { useAddToCart } from '../../hooks/useAddToCart';
 
 export const useShoppingCart = () => {
   const { setShoppingCart, shoppingCart } = useContext(ProductContext);
@@ -20,9 +20,9 @@ export const useShoppingCart = () => {
         shoppingCart.map((item) =>
           item.id === product.id
             ? {
-              ...exists,
-              count: exists.count - 1,
-            }
+                ...exists,
+                count: exists.count - 1,
+              }
             : item
         )
       );
@@ -36,7 +36,7 @@ export const useShoppingCart = () => {
     return productsSumItem
       .reduce((acc, curr) => acc + curr.sum, 0)
       .toFixed(2)
-      .replace(/\d(?=(\d{3})+\.)/g, "$&,");
+      .replace(/\d(?=(\d{3})+\.)/g, '$&,');
   }, [productsSumItem]);
 
   return {
@@ -44,6 +44,6 @@ export const useShoppingCart = () => {
     productsSumItem,
     removeFromCart,
     removeItem,
-    totalSumOfProducts
-  }
-}
+    totalSumOfProducts,
+  };
+};

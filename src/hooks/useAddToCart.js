@@ -7,9 +7,9 @@ export const useAddToCart = (setShoppingCart) => {
         const productsWithCount = prevState.map((item) =>
           item.id === product.id
             ? {
-              ...exists,
-              count: exists.count + 1,
-            }
+                ...exists,
+                count: exists.count + 1,
+              }
             : item
         );
         return productsWithCount;
@@ -18,5 +18,5 @@ export const useAddToCart = (setShoppingCart) => {
     });
   };
 
-  return { addToCart }
-} 
+  return { addToCart };
+};

@@ -6,7 +6,6 @@ import { useAddToCart } from './../../hooks/useAddToCart';
 import { endpoints } from '../../constants/endpoints';
 import { ProductContext } from './../../context/ProductContext';
 
-
 export const useProductDetails = () => {
   const { setShoppingCart } = useContext(ProductContext);
   const params = useParams();
@@ -22,10 +21,10 @@ export const useProductDetails = () => {
 
   const { addToCart } = useAddToCart(setShoppingCart);
 
-  const addToCartClick = () => addToCart(product)
+  const addToCartClick = () => addToCart(product);
 
   return {
     product,
-    addToCartClick
-  }
-}
+    addToCartClick,
+  };
+};
