@@ -5,7 +5,7 @@ import classes from './styles.module.css';
 import Img from '../../assets/img/original.png';
 import { useAddToCart } from './../../hooks/useAddToCart';
 import { ProductContext } from './../../context/ProductContext';
-import { routes } from './../../constants/routes';
+import { endpoints } from './../../constants/endpoints';
 
 const ProductItem = ({ product }) => {
   const { setShoppingCart } = useContext(ProductContext);
