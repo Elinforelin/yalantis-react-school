@@ -16,7 +16,7 @@ const ProductItem = ({ product }) => {
 
   return (
     <div className={classes.products}>
-      <Link to={`${routes.productsList}${product.id}`}>
+      <Link to={endpoints.products.details(product.id)}>
         <img src={Img} alt="product" />
         <div className={classes.name}>{product.name.toUpperCase()}</div>
       </Link>
