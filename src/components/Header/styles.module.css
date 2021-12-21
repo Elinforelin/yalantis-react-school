@@ -1,0 +1,21 @@
+.wrapper {
+  display: flex;
+  justify-content: space-between;
+  height: 50px;
+  background-color: rgb(96, 163, 156);
+  padding: 10px;
+  position: fixed;
+  overflow: hidden;
+  top: 0;
+  width: 100%;
+  z-index: 1;
+}
+.wrapper a {
+  text-decoration: none;
+  color: seashell;
+  font-weight: 700;
+  font-size: 20px;
+  float: left;
+  display: block;
+  padding: 14px 16px;
+}
