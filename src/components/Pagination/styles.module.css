@@ -1,15 +1,38 @@
 .pagination {
-  display: inline-block;
+  display: flex;
   width: 300px;
   justify-content: space-between;
-  justify-items: center;
   align-items: center;
-  font-family: 'Red Hat Mono', monospace;
-  letter-spacing: 15px;
-  font-weight: 700;
   padding: 10px;
   font-size: 24px;
+  margin: 0 auto;
 }
 .active {
   color: red;
+}
+
+.select {
+  min-width: 80px;
+  font-size: 15px;
+  margin-left: 20px;
+  font-weight: 700;
+  font-family: 'Red Hat Mono', monospace;
+}
+
+.pageNumbers {
+  display: flex;
+  padding: 0 10px;
+}
+.pagination button {
+  font-family: 'Red Hat Mono', monospace;
+  font-weight: 700;
+  background-color: rgb(255, 255, 255);
+  border: none;
+  font-size: large;
+}
+
+.pageNumbers span {
+  padding: 0 5px;
+  height: 5px;
+  transform: translateY(-4px);
 }

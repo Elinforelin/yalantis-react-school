@@ -1,27 +1,24 @@
-import { useEffect, useState, useContext } from 'react';
+import { useEffect, useContext, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-import { fetchApi } from '../../utils/fetch';
-import { useAddToCart } from './../../hooks/useAddToCart';
 import { endpoints } from '../../constants/endpoints';
-import { ProductContext } from './../../context/ProductContext';
+import { useDispatch, useSelector } from 'react-redux';
+import { addToCart } from '../../store/shoppingCart/reducer';
+import { selectProductDetails } from './../../store/product/selectors';
+import { fetchApi } from '../../store/product/reducer';
 
 export const useProductDetails = () => {
-  const { setShoppingCart } = useContext(ProductContext);
+  const dispatch = useDispatch();
+  const product = useSelector(selectProductDetails);
   const params = useParams();
-  const [product, setProduct] = useState({});
 
   useEffect(() => {
     if (params.productId) {
-      fetchApi(endpoints.products.details(params.productId)).then((data) =>
-        setProduct(data)
-      );
+      dispatch(fetchApi(endpoints.products.details(params.productId)));
     }
   }, [params.productId]);
 
-  const { addToCart } = useAddToCart(setShoppingCart);
-
-  const addToCartClick = () => addToCart(product);
+  const addToCartClick = () => dispatch(addToCart(product));
 
   return {
     product,

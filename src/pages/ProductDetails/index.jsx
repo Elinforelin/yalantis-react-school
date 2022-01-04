@@ -4,6 +4,7 @@ import { useProductDetails } from './useProductDetails';
 
 const ProductDetails = () => {
   const { product, addToCartClick } = useProductDetails();
+  console.log(product);
 
   return (
     <div className={classes.wrapper}>

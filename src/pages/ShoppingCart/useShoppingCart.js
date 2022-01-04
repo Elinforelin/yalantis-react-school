@@ -1,36 +1,32 @@
-import { useContext, useMemo } from 'react';
-import { ProductContext } from '../../context/ProductContext';
+import { useMemo } from 'react';
+import { useSelector } from 'react-redux';
 
-import { useAddToCart } from '../../hooks/useAddToCart';
+import { removeFromCart } from '../../store/shoppingCart/reducer';
+import { deleteTotallyFromCart } from '../../store/shoppingCart/reducer';
+import { addToCart } from '../../store/shoppingCart/reducer';
+
+import { selectShoppingCart } from '../../store/shoppingCart/selectors';
+import { useDispatch } from 'react-redux';
 
 export const useShoppingCart = () => {
-  const { setShoppingCart, shoppingCart } = useContext(ProductContext);
+  const dispatch = useDispatch();
+  const shoppingCart = Object.values(useSelector(selectShoppingCart));
 
-  const productsSumItem = shoppingCart.map((item) => ({
-    ...item,
-    sum: +item.count * +item.price,
-  }));
-
-  const { addToCart } = useAddToCart(setShoppingCart);
-
-  const removeFromCart = (product) => {
-    const exists = shoppingCart.find((item) => item.id === product.id);
-    if (exists) {
-      setShoppingCart(
-        shoppingCart.map((item) =>
-          item.id === product.id
-            ? {
-                ...exists,
-                count: exists.count - 1,
-              }
-            : item
-        )
-      );
+  let productsSumItem = useMemo(() => {
+    if (shoppingCart.length) {
+      return shoppingCart.map((item) => ({
+        ...item,
+        sum: +item.count * +item.price,
+      }));
     }
-  };
-  const removeItem = (product) => {
-    setShoppingCart((prev) => prev.filter((item) => item.id !== product.id));
-  };
+    return [];
+  }, [shoppingCart]);
+
+  const addToCartClick = (product) => dispatch(addToCart(product));
+
+  const removeFromCartClick = (product) => dispatch(removeFromCart(product));
+
+  const deleteItemClick = (product) => dispatch(deleteTotallyFromCart(product));
 
   const totalSumOfProducts = useMemo(() => {
     return productsSumItem
@@ -40,10 +36,10 @@ export const useShoppingCart = () => {
   }, [productsSumItem]);
 
   return {
-    addToCart,
+    addToCartClick,
     productsSumItem,
-    removeFromCart,
-    removeItem,
+    removeFromCartClick,
+    deleteItemClick,
     totalSumOfProducts,
   };
 };

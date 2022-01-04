@@ -7,10 +7,10 @@ import { useShoppingCart } from './useShoppingCart';
 
 const ShoppingCart = () => {
   const {
-    addToCart,
+    addToCartClick,
     productsSumItem,
-    removeFromCart,
-    removeItem,
+    removeFromCartClick,
+    deleteItemClick,
     totalSumOfProducts,
   } = useShoppingCart();
 
@@ -18,39 +18,47 @@ const ShoppingCart = () => {
     <div className={classes.wrapper}>
       <div>
         <ul>
-          {productsSumItem.map((product) => (
-            <li className={classes.product} key={product.id}>
-              <img src={Img} alt="" />
-              <div className={classes.title}>
-                {product.name}
-                <div>
-                  {'₴ '}
-                  {product.price}
+          {!!productsSumItem.length ? (
+            productsSumItem.map((product) => (
+              <li className={classes.product} key={product.id}>
+                <img src={Img} alt="" />
+                <div className={classes.title}>
+                  {product.name}
+                  <div>
+                    {'₴ '}
+                    {product.price}
+                  </div>
                 </div>
-              </div>
-              <span className={classes.removeBtn}>
-                <button
-                  disabled={product.count === 1 && 'disabled'}
-                  onClick={() => removeFromCart(product)}
-                >
-                  <IconMinus />
-                </button>
-              </span>
-              <span className={classes.count}>{product.count}</span>
-              <span className={classes.addBtn}>
-                <button onClick={() => addToCart(product)}>
-                  <IconPlus />
-                </button>
-              </span>
-              <span className={classes.deleteBtn}>
-                <button onClick={() => removeItem(product)}>DELETE</button>
-              </span>
-              <span className={classes.sum}>
-                {'₴ '}
-                {product.sum}
-              </span>
-            </li>
-          ))}
+                <span className={classes.removeBtn}>
+                  <button
+                    disabled={product.count === 1 && 'disabled'}
+                    onClick={() => removeFromCartClick(product)}
+                  >
+                    <IconMinus />
+                  </button>
+                </span>
+                <span className={classes.count}>{product.count}</span>
+                <span className={classes.addBtn}>
+                  <button onClick={() => addToCartClick(product)}>
+                    <IconPlus />
+                  </button>
+                </span>
+                <span className={classes.deleteBtn}>
+                  <button onClick={() => deleteItemClick(product)}>
+                    DELETE
+                  </button>
+                </span>
+                <span className={classes.sum}>
+                  {'₴ '}
+                  {product.sum}
+                </span>
+              </li>
+            ))
+          ) : (
+            <div className={classes.emptyShoppingCart}>
+              Shopping Cart is empty
+            </div>
+          )}
         </ul>
       </div>
       <div className={classes.total}>

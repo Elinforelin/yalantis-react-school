@@ -39,6 +39,7 @@
   background-color: white;
   border: none;
 }
+
 .addBtn {
   position: relative;
   padding-top: 30px;
@@ -87,4 +88,13 @@
   text-align: center;
   margin-top: 90px;
   border-top: 1px solid gray;
+}
+
+.emptyShoppingCart {
+  padding: 28px 50px;
+  font-size: 30px;
+  color: #942332;
+  font-weight: 600;
+  text-align: center;
+  margin-top: 90px;
 }
