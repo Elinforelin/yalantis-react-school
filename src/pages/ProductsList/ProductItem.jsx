@@ -6,6 +6,7 @@ import Img from '../../assets/img/original.png';
 import { endpoints } from '../../constants/endpoints';
 import { addToCart } from '../../store/shoppingCart/reducer';
 
+
 const ProductItem = ({ product }) => {
   const dispatch = useDispatch();
 
