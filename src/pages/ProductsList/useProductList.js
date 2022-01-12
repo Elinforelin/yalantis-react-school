@@ -1,32 +1,31 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 
-import { fetchApi } from './../../utils/fetch';
 import { endpoints } from './../../constants/endpoints';
+import { useDispatch, useSelector } from 'react-redux';
+import { getProductsList } from '../../store/products/selectors';
+import { fetchAllProducts, setOrigins } from '../../store/products/reducer';
+import { useFetchAllProducts } from '../../hooks/useFetchAllProducts';
 
 export const useProductList = () => {
-  const [products, setProducts] = useState([]);
-  const [perPage, setPerPage] = useState(0);
-  const [totalItems, setTotalItems] = useState(0);
+  const dispatch = useDispatch();
+  const {
+    list: products,
+  } = useSelector(getProductsList);
 
-  const pagesCount = Math.ceil(totalItems / perPage);
-  let pages = [];
+  const { fetch } = useFetchAllProducts()
 
-  for (let i = 1; i <= pagesCount; i++) {
-    pages.push(i);
-  }
+  const selectOnChange = (selectedOptions) => {
+    const optionValues = selectedOptions.map(({ value }) => value);
+    dispatch(setOrigins(optionValues));
+    fetch({ newOrigins: optionValues })
+  };
 
   useEffect(() => {
-    fetchApi(endpoints.products.list()).then((data) => {
-      setProducts(data.items);
-      setPerPage(data.perPage);
-      setTotalItems(data.totalItems);
-    });
-  }, []);
+    dispatch(fetchAllProducts(endpoints.products.list()));
+  }, [dispatch]);
 
   return {
-    perPage,
-    setProducts,
-    pages,
     products,
+    selectOnChange,
   };
 };

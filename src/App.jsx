@@ -1,5 +1,5 @@
 import './App.css';
-import RoutesShopPages from './RoutesShopPages';
+import RoutesShopPages from './routes';
 
 function App() {
   return <RoutesShopPages />;

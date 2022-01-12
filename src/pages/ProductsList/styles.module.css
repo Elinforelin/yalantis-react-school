@@ -50,3 +50,43 @@
   background-color: rgb(110, 159, 216);
   border-radius: 5px;
 }
+
+.select {
+  width: 400px;
+  font-family: 'Red Hat Mono', monospace;
+  margin-right: 20px;
+}
+
+.filterWrap {
+  display: flex;
+  justify-content: center;
+}
+
+.form input {
+  height: 38px;
+  width: 50px;
+  margin: 0 5px;
+  align-items: center;
+  padding: 2px 8px;
+  box-sizing: border-box;
+  border: 1px solid rgb(204, 204, 204);
+  border-radius: 3px;
+  font-family: 'Red Hat Mono', monospace;
+}
+
+.apply {
+  background-color: white;
+  border: none;
+  font-size: 15px;
+  font-family: 'Red Hat Mono', monospace;
+}
+
+.apply:hover {
+  color: tomato;
+  font-weight: 700;
+}
+
+input[type='number']::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
