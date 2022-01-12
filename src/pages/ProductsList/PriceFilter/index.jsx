@@ -1,40 +1,26 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 import classes from './../styles.module.css';
-import {
-  fetchApi,
-  setMaxPrice,
-  setMinPrice,
-} from '../../../store/products/reducer';
-import { selectProductsList } from '../../../store/products/selectors';
-import { endpoints } from '../../../constants/endpoints';
+import { setMaxPrice, setMinPrice } from '../../../store/products/reducer';
+import { useFetchAllProducts } from '../../../hooks/useFetchAllProducts';
 
 const PriceFilter = () => {
   const dispatch = useDispatch();
-  const { page, perPage, minPrice, maxPrice, origins } =
-    useSelector(selectProductsList);
+
+  const { fetch } = useFetchAllProducts();
 
   const applyPrices = (event) => {
     event.preventDefault();
-    dispatch(
-      fetchApi(
-        endpoints.products.paginationList(
-          page,
-          perPage,
-          origins,
-          minPrice,
-          maxPrice
-        )
-      )
-    );
+    fetch();
   };
 
   const setPrice = (event) => {
     const name = event.target.name;
     if (name === 'min') {
       dispatch(setMinPrice(+event.target.value));
+    } else {
+      dispatch(setMaxPrice(+event.target.value));
     }
-    dispatch(setMaxPrice(+event.target.value));
   };
 
   return (

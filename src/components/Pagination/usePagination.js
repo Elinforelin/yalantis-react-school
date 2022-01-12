@@ -1,21 +1,18 @@
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useMemo } from 'react';
 
-import { endpoints } from '../../constants/endpoints';
-import { selectProductsList } from '../../store/products/selectors';
-import { fetchApi } from '../../store/products/reducer';
+import { getProductsList } from '../../store/products/selectors';
 import classes from './styles.module.css';
+import { useFetchAllProducts } from '../../hooks/useFetchAllProducts';
 
 export const usePagination = () => {
   const {
     page: currentPage,
     perPage,
     totalItems,
-    origins,
-    minPrice,
-    maxPrice,
-  } = useSelector(selectProductsList);
-  const dispatch = useDispatch();
+  } = useSelector(getProductsList);
+
+  const { fetch } = useFetchAllProducts()
 
   const pagesCount = Math.ceil(totalItems / perPage);
   let pages = [];
@@ -24,19 +21,9 @@ export const usePagination = () => {
     pages.push(i);
   }
 
+
   const onPageChange = (page) => {
-    console.log(minPrice, maxPrice);
-    dispatch(
-      fetchApi(
-        endpoints.products.paginationList(
-          page,
-          perPage,
-          origins,
-          minPrice,
-          maxPrice
-        )
-      )
-    );
+    fetch({ newPage: page })
   };
 
   const nextPageClick = () => {
@@ -47,17 +34,7 @@ export const usePagination = () => {
   };
 
   const changePerPageClick = (pageOption) => {
-    dispatch(
-      fetchApi(
-        endpoints.products.paginationList(
-          1,
-          pageOption.value,
-          origins,
-          minPrice,
-          maxPrice
-        )
-      )
-    );
+    fetch({ newPerPage: pageOption.value, newPage: 1 })
   };
 
   const paginationNumbers = useMemo(() => {

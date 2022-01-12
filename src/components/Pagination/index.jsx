@@ -24,7 +24,11 @@ const Pagination = () => {
       <div className={classes.pageNumbers}>
         {pages.length > 8
           ? paginationNumbers.map((page) =>
-              page === -1 ? <span>...</span> : getPaginationButton(page)
+              page === -1 ? (
+                <span key={page}>...</span>
+              ) : (
+                getPaginationButton(page)
+              )
             )
           : pages.map((page) => getPaginationButton(page))}
       </div>

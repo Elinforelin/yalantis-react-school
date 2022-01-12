@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
-export const fetchApi = createAsyncThunk(
+export const fetchProduct = createAsyncThunk(
   'product/fetchApi',
   async function (endpoints) {
     const response = await fetch(
@@ -22,16 +22,16 @@ const oneProductSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: {
-    [fetchApi.pending]: (state) => {
+    [fetchProduct.pending]: (state) => {
       state.status = 'loading';
       state.error = '';
     },
-    [fetchApi.fulfilled]: (state, action) => {
+    [fetchProduct.fulfilled]: (state, action) => {
       state.status = 'resolved';
       state.product = action.payload;
       state.error = '';
     },
-    [fetchApi.rejected]: (state) => {
+    [fetchProduct.rejected]: (state) => {
       state.status = 'error';
     },
   },

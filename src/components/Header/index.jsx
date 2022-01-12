@@ -2,12 +2,12 @@ import { useSelector } from 'react-redux';
 import { NavLink, useRouteMatch } from 'react-router-dom';
 
 import { routes } from '../../constants/routes';
-import { selectQuantity } from '../../store/shoppingCart/selectors';
+import { getQuantity } from '../../store/shoppingCart/selectors';
 import classes from './styles.module.css';
 
 const Header = () => {
-  let match = useRouteMatch(routes.shoppingCart);
-  const quantity = useSelector(selectQuantity);
+  const match = useRouteMatch(routes.shoppingCart);
+  const quantity = useSelector(getQuantity);
 
   return (
     <div className={classes.wrapper}>

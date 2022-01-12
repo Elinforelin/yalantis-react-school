@@ -5,12 +5,12 @@ import { removeFromCart } from '../../store/shoppingCart/reducer';
 import { deleteTotallyFromCart } from '../../store/shoppingCart/reducer';
 import { addToCart } from '../../store/shoppingCart/reducer';
 
-import { selectShoppingCart } from '../../store/shoppingCart/selectors';
+import { getShoppingCart } from '../../store/shoppingCart/selectors';
 import { useDispatch } from 'react-redux';
 
 export const useShoppingCart = () => {
   const dispatch = useDispatch();
-  const shoppingCart = Object.values(useSelector(selectShoppingCart));
+  const shoppingCart = useSelector(getShoppingCart);
 
   let productsSumItem = useMemo(() => {
     if (shoppingCart.length) {

@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
-export const fetchApi = createAsyncThunk(
+export const fetchAllProducts = createAsyncThunk(
   'products/fetchApi',
   async function (endpoints) {
     const response = await fetch(
@@ -38,11 +38,11 @@ const productsSlice = createSlice({
     },
   },
   extraReducers: {
-    [fetchApi.pending]: (state) => {
+    [fetchAllProducts.pending]: (state) => {
       state.status = 'loading';
       state.error = '';
     },
-    [fetchApi.fulfilled]: (state, action) => {
+    [fetchAllProducts.fulfilled]: (state, action) => {
       state.status = 'resolved';
       state.list = action.payload.items;
       state.totalItems = action.payload.totalItems;
@@ -50,7 +50,7 @@ const productsSlice = createSlice({
       state.page = action.payload.page;
       state.error = '';
     },
-    [fetchApi.rejected]: (state) => {
+    [fetchAllProducts.rejected]: (state) => {
       state.status = 'error';
     },
   },
