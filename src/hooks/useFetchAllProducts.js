@@ -1,7 +1,7 @@
 import { useSelector, useDispatch } from "react-redux";
 
 import { endpoints } from "../constants/endpoints"
-import { fetchAllProducts } from "../store/products/reducer";
+import { fetchAllProducts } from "../store/products/actions";
 import { getProductsList } from "../store/products/selectors";
 
 export const useFetchAllProducts = () => {
@@ -11,18 +11,21 @@ export const useFetchAllProducts = () => {
     perPage,
     minPrice,
     maxPrice,
-    origins
+    origins,
+    editable
   } = useSelector(getProductsList);
 
   const fetch = ({ newPage, newOrigins, newPerPage } = {}) => {
-    dispatch(fetchAllProducts(endpoints.products.paginationList(
-      newPage ?? page,
-      newPerPage ?? perPage,
-      newOrigins ?? origins,
-      minPrice,
-      maxPrice
-    )
-    ))
+    dispatch(fetchAllProducts({
+      endpoints: endpoints.products.paginationList(
+        newPage ?? page,
+        newPerPage ?? perPage,
+        newOrigins ?? origins,
+        minPrice,
+        maxPrice,
+        editable
+      )
+    }))
   };
 
   return {

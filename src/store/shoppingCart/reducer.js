@@ -39,10 +39,13 @@ const shoppingCartSlice = createSlice({
 
       delete state.shoppingCart[id];
     },
+    cleanShoppingCart: (state) => {
+      state.shoppingCart = {}
+    }
   },
 });
 
-export const { addToCart, removeFromCart, deleteTotallyFromCart } =
+export const { addToCart, removeFromCart, deleteTotallyFromCart, cleanShoppingCart } =
   shoppingCartSlice.actions;
 
 export default shoppingCartSlice.reducer;

@@ -3,8 +3,9 @@ import { useEffect } from 'react';
 import { endpoints } from './../../constants/endpoints';
 import { useDispatch, useSelector } from 'react-redux';
 import { getProductsList } from '../../store/products/selectors';
-import { fetchAllProducts, setOrigins } from '../../store/products/reducer';
+import { clearProductList, setOrigins } from '../../store/products/reducer';
 import { useFetchAllProducts } from '../../hooks/useFetchAllProducts';
+import { fetchAllProducts } from '../../store/products/actions';
 
 export const useProductList = () => {
   const dispatch = useDispatch();
@@ -21,8 +22,12 @@ export const useProductList = () => {
   };
 
   useEffect(() => {
-    dispatch(fetchAllProducts(endpoints.products.list()));
+    dispatch(fetchAllProducts({ endpoints: endpoints.products.list() }));
   }, [dispatch]);
+
+  useEffect(() => {
+    return () => { dispatch(clearProductList()) }
+  }, [])
 
   return {
     products,

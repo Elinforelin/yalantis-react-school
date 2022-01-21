@@ -1,0 +1,56 @@
+@import url('https://fonts.googleapis.com/css2?family=Red+Hat+Mono&display=swap');
+.form {
+  font-size: 15px;
+  font-family: 'Red Hat Mono', monospace;
+  font-weight: 600;
+}
+.input {
+  height: 20px;
+  width: 300px;
+  margin: 5px;
+  border: 1px solid rgb(204, 204, 204);
+  font-family: 'Red Hat Mono', monospace;
+}
+.select {
+  height: 30px;
+  width: 100px;
+  margin: 10px;
+  font-size: 15px;
+  font-family: 'Red Hat Mono', monospace;
+  font-weight: 600;
+  border: 1px solid rgb(204, 204, 204);
+}
+.select option {
+  font-size: 15px;
+  font-family: 'Red Hat Mono', monospace;
+  font-weight: 600;
+}
+.submitBtn {
+  font-size: 15px;
+  background-color: rgb(255, 255, 255);
+  border: none;
+  font-weight: 700;
+  font-family: 'Red Hat Mono', monospace;
+}
+.submitBtn:hover {
+  color: red;
+}
+.submitBtn:disabled:hover {
+  color: red;
+  opacity: 0.5;
+}
+.error {
+  padding: 5px 0 30px;
+  font-size: 13px;
+  color: red;
+}
+.closeBtn {
+  background-color: rgb(255, 255, 255);
+  border: none;
+  position: relative;
+  left: 300px;
+  font-family: 'Red Hat Mono', monospace;
+  font-weight: 800;
+  color: red;
+  font-size: 25px;
+}

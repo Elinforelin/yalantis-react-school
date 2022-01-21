@@ -1,18 +1,27 @@
+export const originsValues = {
+  usa: 'usa',
+  africa: 'africa',
+  asia: 'asia',
+  europe: 'europe',
+};
+
+export const originsArray = Object.keys(originsValues);
+
 export const originOptions = [
   {
-    value: 'usa',
+    value: originsValues.usa,
     label: 'Usa',
   },
   {
-    value: 'africa',
+    value: originsValues.africa,
     label: 'Africa',
   },
   {
-    value: 'asia',
+    value: originsValues.asia,
     label: 'Asia',
   },
   {
-    value: 'europe',
+    value: originsValues.europe,
     label: 'Europe',
   },
 ];

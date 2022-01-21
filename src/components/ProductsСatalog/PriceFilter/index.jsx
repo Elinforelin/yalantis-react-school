@@ -1,7 +1,11 @@
 import { useDispatch } from 'react-redux';
 
 import classes from './../styles.module.css';
-import { setMaxPrice, setMinPrice } from '../../../store/products/reducer';
+import {
+  setMaxPrice,
+  setMinPrice,
+  setPage,
+} from '../../../store/products/reducer';
 import { useFetchAllProducts } from '../../../hooks/useFetchAllProducts';
 
 const PriceFilter = () => {
@@ -21,6 +25,7 @@ const PriceFilter = () => {
     } else {
       dispatch(setMaxPrice(+event.target.value));
     }
+    dispatch(setPage(1));
   };
 
   return (

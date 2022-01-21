@@ -11,6 +11,9 @@ import ShoppingCart from '../pages/ShoppingCart';
 import ProductDetails from '../pages/ProductDetails';
 import Header from '../components/Header';
 import { routes } from '../constants/routes';
+import MyProductsList from './../pages/MyProductsList';
+import OrdersList from './../pages/OrdersList/index';
+import OrderDetails from './../pages/OrderDetails/index';
 
 const RoutesShopPages = () => {
   return (
@@ -24,6 +27,9 @@ const RoutesShopPages = () => {
           />
           <Route path={routes.productsList} render={() => <ProductsList />} />
           <Route path={routes.shoppingCart} render={() => <ShoppingCart />} />
+          <Route path={routes.myProducts} render={() => <MyProductsList />} />
+          <Route path={routes.orderDetail} render={() => <OrderDetails />} />
+          <Route path={routes.orders} render={() => <OrdersList />} />
           <Redirect to={routes.productsList} />
         </Switch>
       </div>
