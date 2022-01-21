@@ -1,4 +1,3 @@
-
 import { createSlice } from '@reduxjs/toolkit';
 import { fetchOrders } from './actions';
 
@@ -6,14 +5,13 @@ const initialState = {
   list: [],
   status: '',
   error: '',
-  editable: ''
+  editable: '',
 };
 
 const orderSlice = createSlice({
   name: 'orders',
   initialState,
-  reducers: {
-  },
+  reducers: {},
   extraReducers: {
     [fetchOrders.pending]: (state) => {
       state.status = 'loading';
@@ -21,7 +19,7 @@ const orderSlice = createSlice({
     },
     [fetchOrders.fulfilled]: (state, action) => {
       state.status = 'resolved';
-      state.list = action.payload.items
+      state.list = action.payload.items;
       state.error = '';
     },
     [fetchOrders.rejected]: (state) => {

@@ -1,7 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { fetchProduct } from './actions';
 
-
 const initialState = {
   product: {},
   status: '',
@@ -13,8 +12,8 @@ const oneProductSlice = createSlice({
   initialState,
   reducers: {
     removeProductDetails: (state) => {
-      state.product = {}
-    }
+      state.product = {};
+    },
   },
   extraReducers: {
     [fetchProduct.pending]: (state) => {
@@ -32,6 +31,6 @@ const oneProductSlice = createSlice({
   },
 });
 
-export const { removeProductDetails } = oneProductSlice.actions
+export const { removeProductDetails } = oneProductSlice.actions;
 
 export default oneProductSlice.reducer;

@@ -1,1 +1,1 @@
-export const getOrdersList = (state) => state.ordersList.list
+export const getOrdersList = (state) => state.ordersList.list;

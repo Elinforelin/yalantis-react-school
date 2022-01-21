@@ -15,6 +15,6 @@ export const useOrdersList = () => {
   }, [dispatch]);
 
   return {
-    list
-  }
-}
+    list,
+  };
+};

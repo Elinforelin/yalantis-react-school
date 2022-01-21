@@ -13,6 +13,6 @@ export const store = configureStore({
     productDetails: oneProductSlice,
     ordersList: orderSlice,
     orderDetails: orderDetailSlice,
-    modalWindow: modalSlice
+    modalWindow: modalSlice,
   },
 });

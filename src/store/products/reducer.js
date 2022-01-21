@@ -11,7 +11,7 @@ const initialState = {
   maxPrice: 0,
   status: '',
   error: '',
-  editable: ''
+  editable: '',
 };
 
 const productsSlice = createSlice({
@@ -33,7 +33,7 @@ const productsSlice = createSlice({
     setEditable(state, action) {
       state.editable = action.payload;
     },
-    clearProductList(state,) {
+    clearProductList(state) {
       state.list = [];
     },
   },
@@ -56,6 +56,13 @@ const productsSlice = createSlice({
   },
 });
 
-export const { setMinPrice, setMaxPrice, setOrigins, setEditable, setPage, clearProductList } = productsSlice.actions;
+export const {
+  setMinPrice,
+  setMaxPrice,
+  setOrigins,
+  setEditable,
+  setPage,
+  clearProductList,
+} = productsSlice.actions;
 
 export default productsSlice.reducer;

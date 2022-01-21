@@ -4,5 +4,5 @@ export const routes = {
   myProducts: '/my-products',
   shoppingCart: '/shopping-cart',
   orders: '/orders',
-  orderDetail: '/orders/:orderId'
+  orderDetail: '/orders/:orderId',
 };

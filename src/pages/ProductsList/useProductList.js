@@ -9,16 +9,14 @@ import { fetchAllProducts } from '../../store/products/actions';
 
 export const useProductList = () => {
   const dispatch = useDispatch();
-  const {
-    list: products,
-  } = useSelector(getProductsList);
+  const { list: products } = useSelector(getProductsList);
 
-  const { fetch } = useFetchAllProducts()
+  const { fetch } = useFetchAllProducts();
 
   const selectOnChange = (selectedOptions) => {
     const optionValues = selectedOptions.map(({ value }) => value);
     dispatch(setOrigins(optionValues));
-    fetch({ newOrigins: optionValues })
+    fetch({ newOrigins: optionValues });
   };
 
   useEffect(() => {
@@ -26,8 +24,10 @@ export const useProductList = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    return () => { dispatch(clearProductList()) }
-  }, [])
+    return () => {
+      dispatch(clearProductList());
+    };
+  }, []);
 
   return {
     products,

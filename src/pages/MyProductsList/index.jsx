@@ -2,10 +2,7 @@ import { useEffect } from 'react';
 
 import ProductsCatalog from './../../components/ProductsСatalog/index';
 import { useDispatch } from 'react-redux';
-import {
-  setEditable,
-  setOrigins,
-} from './../../store/products/reducer';
+import { setEditable, setOrigins } from './../../store/products/reducer';
 import { useSelector } from 'react-redux';
 import {
   getProductsList,

@@ -8,15 +8,11 @@ import { useRouteMatch } from 'react-router-dom';
 import { originsArray, originsValues } from '../../constants/origins';
 import { setModalActive } from '../../store/modal/reducer';
 import { endpoints } from '../../constants/endpoints';
-import {
-  removeProductDetails,
-} from './../../store/product/reducer';
+import { removeProductDetails } from './../../store/product/reducer';
 import { routes } from './../../constants/routes';
 import { getProductDetails } from '../../store/product/selectors';
 import { fetchAllProducts } from './../../store/products/actions';
 import { fetchProduct } from '../../store/product/actions';
-
-
 
 const schema = object().shape({
   name: string().required().max(20).min(3),
@@ -114,6 +110,8 @@ export const useProductForm = () => {
     createProduct,
     editProduct,
     closeModal,
-    onReset, isEdit, isSubmitting
-  }
-}
+    onReset,
+    isEdit,
+    isSubmitting,
+  };
+};

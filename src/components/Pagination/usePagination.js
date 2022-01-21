@@ -12,7 +12,7 @@ export const usePagination = () => {
     totalItems,
   } = useSelector(getProductsList);
 
-  const { fetch } = useFetchAllProducts()
+  const { fetch } = useFetchAllProducts();
 
   const pagesCount = Math.ceil(totalItems / perPage);
   let pages = [];
@@ -21,9 +21,8 @@ export const usePagination = () => {
     pages.push(i);
   }
 
-
   const onPageChange = (page) => {
-    fetch({ newPage: page })
+    fetch({ newPage: page });
   };
 
   const nextPageClick = () => {
@@ -34,7 +33,7 @@ export const usePagination = () => {
   };
 
   const changePerPageClick = (pageOption) => {
-    fetch({ newPerPage: pageOption.value, newPage: 1 })
+    fetch({ newPerPage: pageOption.value, newPage: 1 });
   };
 
   const paginationNumbers = useMemo(() => {
