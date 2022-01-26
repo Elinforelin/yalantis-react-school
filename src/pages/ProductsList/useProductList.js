@@ -13,7 +13,7 @@ export const useProductList = () => {
 
   const { fetch } = useFetchAllProducts();
 
-  const selectOnChange = (selectedOptions) => {
+  const selectOnChange = (selectedOptions, e) => {
     const optionValues = selectedOptions.map(({ value }) => value);
     dispatch(setOrigins(optionValues));
     fetch({ newOrigins: optionValues });

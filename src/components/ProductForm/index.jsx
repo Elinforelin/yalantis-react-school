@@ -18,13 +18,11 @@ const ProductForm = () => {
     onReset,
     isEdit,
     isSubmitting,
+    isEditForm,
   } = useProductForm();
 
   return (
-    <form
-      onSubmit={handleSubmit(isEdit ? editProduct : createProduct)}
-      className={classes.form}
-    >
+    <form onSubmit={handleSubmit(isEditForm)} className={classes.form}>
       <button className={classes.closeBtn} onClick={closeModal}>
         x
       </button>

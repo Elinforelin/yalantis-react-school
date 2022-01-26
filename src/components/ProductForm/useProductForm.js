@@ -100,6 +100,7 @@ export const useProductForm = () => {
     e.preventDefault();
     reset(productForChange);
   };
+  const isEditForm = isEdit ? editProduct : createProduct;
 
   return {
     handleSubmit,
@@ -113,5 +114,6 @@ export const useProductForm = () => {
     onReset,
     isEdit,
     isSubmitting,
+    isEditForm,
   };
 };
