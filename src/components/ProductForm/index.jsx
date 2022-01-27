@@ -12,8 +12,6 @@ const ProductForm = () => {
     errors,
     disabledSubmit,
     control,
-    createProduct,
-    editProduct,
     closeModal,
     onReset,
     isEdit,

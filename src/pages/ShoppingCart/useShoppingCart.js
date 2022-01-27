@@ -1,6 +1,8 @@
 import { useMemo } from 'react';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
+import { useHistory } from "react-router-dom";
+
 import { endpoints } from '../../constants/endpoints';
 import { fetchAllProducts } from '../../store/products/actions';
 
@@ -15,6 +17,7 @@ import { getShoppingCart } from '../../store/shoppingCart/selectors';
 export const useShoppingCart = () => {
   const dispatch = useDispatch();
   const shoppingCart = useSelector(getShoppingCart);
+  const history = useHistory();
 
   let productsSumItem = useMemo(() => {
     if (shoppingCart.length) {
@@ -57,7 +60,7 @@ export const useShoppingCart = () => {
       })
     );
     dispatch(cleanShoppingCart());
-    window.location.href = '/orders';
+    history.push('/orders');
   };
 
   return {

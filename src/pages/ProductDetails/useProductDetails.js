@@ -19,8 +19,7 @@ export const useProductDetails = () => {
         fetchProduct({ endpoints: endpoints.products.details(productId) })
       );
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [productId]);
+  }, [dispatch, productId]);
 
   const addToCartClick = () => dispatch(addToCart(product));
 
@@ -28,8 +27,7 @@ export const useProductDetails = () => {
     return () => {
       dispatch(removeProductDetails());
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [dispatch]);
 
   return {
     product,

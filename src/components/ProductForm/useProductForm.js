@@ -60,13 +60,7 @@ export const useProductForm = () => {
         payload: { product: data },
       })
     );
-    if (pageIsProducts) {
-      dispatch(fetchAllProducts({ endpoints: endpoints.products.list() }));
-    } else {
-      dispatch(
-        fetchAllProducts({ endpoints: endpoints.products.myProducts() })
-      );
-    }
+    dispatch(fetchAllProducts({ endpoints: pageIsProducts ? endpoints.products.list() : endpoints.products.myProducts() }));
     dispatch(setModalActive(false));
     reset();
   };
@@ -88,8 +82,7 @@ export const useProductForm = () => {
     return () => {
       dispatch(removeProductDetails());
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [dispatch]);
 
   const closeModal = (e) => {
     e.preventDefault();

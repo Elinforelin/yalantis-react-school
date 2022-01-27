@@ -1,8 +1,10 @@
 import { useDispatch, useSelector } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import { setModalActive } from '../../store/modal/reducer';
 import classes from './style.module.css';
 import { getModalStatus } from '../../store/modal/selector';
+import React from 'react';
 
 const Modal = ({ children }) => {
   const dispatch = useDispatch();
@@ -23,6 +25,10 @@ const Modal = ({ children }) => {
       </div>
     </div>
   );
+};
+
+Modal.propTypes = {
+  children: PropTypes.element,
 };
 
 export default Modal;

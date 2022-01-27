@@ -17,8 +17,7 @@ export const useOrderDetail = () => {
         fetchOrderDetail({ endpoints: endpoints.orders.orderDetails(orderId) })
       );
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [orderId]);
+  }, [dispatch, orderId]);
 
   return {
     orderDetails,
