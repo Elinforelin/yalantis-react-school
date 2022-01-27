@@ -27,7 +27,7 @@ export const useProductList = () => {
     return () => {
       dispatch(clearProductList());
     };
-  }, []);
+  }, [dispatch]);
 
   return {
     products,

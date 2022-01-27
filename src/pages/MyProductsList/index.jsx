@@ -23,7 +23,11 @@ const MyProductsList = () => {
   };
 
   useEffect(() => {
-    dispatch(fetchAllProducts({ endpoints: endpoints.products.myProducts() }));
+    dispatch(
+      fetchAllProducts({
+        endpoints: endpoints.products.myProducts(),
+      })
+    );
   }, [dispatch]);
 
   return (
