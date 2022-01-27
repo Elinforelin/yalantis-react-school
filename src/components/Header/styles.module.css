@@ -18,4 +18,15 @@
   float: left;
   display: block;
   padding: 14px 16px;
+  margin: 0 20px;
+}
+.createProduct {
+  color: rgb(168, 83, 83);
+  font-weight: 700;
+  font-size: 20px;
+  float: left;
+  display: block;
+  padding: 14px 16px;
+  background-color: rgb(96, 163, 156);
+  border: none;
 }

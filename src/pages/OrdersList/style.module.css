@@ -1,0 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Red+Hat+Mono&display=swap');
+
+.wrapper {
+  width: 100%;
+  height: 423px;
+  margin: 0px auto;
+  border-radius: 6px;
+  margin-top: 80px;
+  margin-left: 50px;
+  font-family: 'Red Hat Mono', monospace;
+}
+.wrapper a {
+  text-decoration: none;
+  color: #3e454e;
+  padding: 15px;
+  text-align: justify;
+}
+.item {
+  padding-left: 20px;
+}
+.explainedField {
+  font-weight: 800;
+}

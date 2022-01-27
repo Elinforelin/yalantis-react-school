@@ -1,11 +1,12 @@
-import { useEffect, } from 'react';
+import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
 import { endpoints } from '../../constants/endpoints';
 import { useDispatch, useSelector } from 'react-redux';
 import { addToCart } from '../../store/shoppingCart/reducer';
 import { getProductDetails } from './../../store/product/selectors';
-import { fetchProduct } from '../../store/product/reducer';
+import { removeProductDetails } from '../../store/product/reducer';
+import { fetchProduct } from '../../store/product/actions';
 
 export const useProductDetails = () => {
   const dispatch = useDispatch();
@@ -14,11 +15,19 @@ export const useProductDetails = () => {
 
   useEffect(() => {
     if (productId) {
-      dispatch(fetchProduct(endpoints.products.details(productId)));
+      dispatch(
+        fetchProduct({ endpoints: endpoints.products.details(productId) })
+      );
     }
-  }, [productId]);
+  }, [dispatch, productId]);
 
   const addToCartClick = () => dispatch(addToCart(product));
+
+  useEffect(() => {
+    return () => {
+      dispatch(removeProductDetails());
+    };
+  }, [dispatch]);
 
   return {
     product,

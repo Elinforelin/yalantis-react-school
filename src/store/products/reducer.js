@@ -1,15 +1,5 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-
-export const fetchAllProducts = createAsyncThunk(
-  'products/fetchApi',
-  async function (endpoints) {
-    const response = await fetch(
-      `${process.env.REACT_APP_API_URL}${endpoints}`
-    );
-    const data = await response.json();
-    return data;
-  }
-);
+import { createSlice } from '@reduxjs/toolkit';
+import { fetchAllProducts } from './actions';
 
 const initialState = {
   list: [],
@@ -21,6 +11,7 @@ const initialState = {
   maxPrice: 0,
   status: '',
   error: '',
+  editable: '',
 };
 
 const productsSlice = createSlice({
@@ -30,11 +21,20 @@ const productsSlice = createSlice({
     setOrigins(state, action) {
       state.origins = action.payload;
     },
+    setPage(state, action) {
+      state.page = action.payload;
+    },
     setMinPrice(state, action) {
       state.minPrice = action.payload;
     },
     setMaxPrice(state, action) {
       state.maxPrice = action.payload;
+    },
+    setEditable(state, action) {
+      state.editable = action.payload;
+    },
+    clearProductList(state) {
+      state.list = [];
     },
   },
   extraReducers: {
@@ -56,6 +56,13 @@ const productsSlice = createSlice({
   },
 });
 
-export const { setMinPrice, setMaxPrice, setOrigins } = productsSlice.actions;
+export const {
+  setMinPrice,
+  setMaxPrice,
+  setOrigins,
+  setEditable,
+  setPage,
+  clearProductList,
+} = productsSlice.actions;
 
 export default productsSlice.reducer;

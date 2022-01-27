@@ -1,15 +1,5 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-
-export const fetchProduct = createAsyncThunk(
-  'product/fetchApi',
-  async function (endpoints) {
-    const response = await fetch(
-      `${process.env.REACT_APP_API_URL}${endpoints}`
-    );
-    const data = await response.json();
-    return data;
-  }
-);
+import { createSlice } from '@reduxjs/toolkit';
+import { fetchProduct } from './actions';
 
 const initialState = {
   product: {},
@@ -20,7 +10,11 @@ const initialState = {
 const oneProductSlice = createSlice({
   name: 'product',
   initialState,
-  reducers: {},
+  reducers: {
+    removeProductDetails: (state) => {
+      state.product = {};
+    },
+  },
   extraReducers: {
     [fetchProduct.pending]: (state) => {
       state.status = 'loading';
@@ -36,5 +30,7 @@ const oneProductSlice = createSlice({
     },
   },
 });
+
+export const { removeProductDetails } = oneProductSlice.actions;
 
 export default oneProductSlice.reducer;

@@ -1,16 +1,23 @@
 import { useMemo } from 'react';
 import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { useHistory } from "react-router-dom";
 
-import { removeFromCart } from '../../store/shoppingCart/reducer';
+import { endpoints } from '../../constants/endpoints';
+import { fetchAllProducts } from '../../store/products/actions';
+
+import {
+  cleanShoppingCart,
+  removeFromCart,
+} from '../../store/shoppingCart/reducer';
 import { deleteTotallyFromCart } from '../../store/shoppingCart/reducer';
 import { addToCart } from '../../store/shoppingCart/reducer';
-
 import { getShoppingCart } from '../../store/shoppingCart/selectors';
-import { useDispatch } from 'react-redux';
 
 export const useShoppingCart = () => {
   const dispatch = useDispatch();
   const shoppingCart = useSelector(getShoppingCart);
+  const history = useHistory();
 
   let productsSumItem = useMemo(() => {
     if (shoppingCart.length) {
@@ -35,11 +42,34 @@ export const useShoppingCart = () => {
       .replace(/\d(?=(\d{3})+\.)/g, '$&,');
   }, [productsSumItem]);
 
+  const itemIncart = shoppingCart.map(({ id, count }) => ({
+    productId: id,
+    count,
+  }));
+
+  const confirmOrder = async () => {
+    await dispatch(
+      fetchAllProducts({
+        endpoints: endpoints.orders.list(),
+        method: 'POST',
+        payload: {
+          order: {
+            pieces: itemIncart,
+          },
+        },
+      })
+    );
+    dispatch(cleanShoppingCart());
+    history.push('/orders');
+  };
+
   return {
+    shoppingCart,
     addToCartClick,
     productsSumItem,
     removeFromCartClick,
     deleteItemClick,
     totalSumOfProducts,
+    confirmOrder,
   };
 };
