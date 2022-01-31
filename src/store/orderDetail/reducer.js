@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { fetchOrderDetail } from './actions';
+import { fetchOrderDetailStart, fetchOrderDetailSuccess, fetchOrderDetailError } from './actions';
 
 const initialState = {
   order: {},
@@ -13,20 +13,37 @@ const orderDetailSlice = createSlice({
   name: 'order',
   initialState,
   reducers: {},
-  extraReducers: {
-    [fetchOrderDetail.pending]: (state) => {
+  extraReducers: (builder) => {
+    builder.addCase(fetchOrderDetailStart, (state) => {
       state.status = 'loading';
       state.error = '';
-    },
-    [fetchOrderDetail.fulfilled]: (state, action) => {
+    })
+    builder.addCase(fetchOrderDetailSuccess, (state, action) => {
       state.status = 'resolved';
       state.order = action.payload;
       state.error = '';
-    },
-    [fetchOrderDetail.rejected]: (state) => {
+    })
+    builder.addCase(fetchOrderDetailError, (state) => {
       state.status = 'error';
-    },
+    })
+
+    // Change logic according to HM#4      
+
+    // [fetchOrderDetail.pending]: (state) => {
+    //   state.status = 'loading';
+    //   state.error = '';
+    // },
+    // [fetchOrderDetail.fulfilled]: (state, action) => {
+    //   state.status = 'resolved';
+    //   state.order = action.payload;
+    //   state.error = '';
+    // },
+    // [fetchOrderDetail.rejected]: (state) => {
+    //   state.status = 'error';
+    // },
   },
 });
 
 export default orderDetailSlice.reducer;
+
+

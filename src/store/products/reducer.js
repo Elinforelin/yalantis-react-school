@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { fetchAllProducts } from './actions';
+import { fetchAllProducts, originsSelectFetchError, originsSelectFetchStart, originsSelectFetchSuccess } from './actions';
 
 const initialState = {
   list: [],
@@ -11,7 +11,7 @@ const initialState = {
   maxPrice: 0,
   status: '',
   error: '',
-  editable: '',
+  editable: false,
 };
 
 const productsSlice = createSlice({
@@ -24,6 +24,9 @@ const productsSlice = createSlice({
     setPage(state, action) {
       state.page = action.payload;
     },
+    setPerPage(state, action) {
+      state.perPage = action.payload;
+    },
     setMinPrice(state, action) {
       state.minPrice = action.payload;
     },
@@ -35,6 +38,15 @@ const productsSlice = createSlice({
     },
     clearProductList(state) {
       state.list = [];
+      state.perPage = 50;
+      state.totalItems = 0;
+      state.page = 1;
+      state.origins = [];
+      state.minPrice = 0;
+      state.maxPrice = 0;
+      state.status = '';
+      state.error = '';
+      state.editable = false;
     },
   },
   extraReducers: {
@@ -53,6 +65,21 @@ const productsSlice = createSlice({
     [fetchAllProducts.rejected]: (state) => {
       state.status = 'error';
     },
+    [originsSelectFetchStart]: (state) => {
+      state.status = 'loading';
+      state.error = '';
+    },
+    [originsSelectFetchSuccess]: (state, action) => {
+      state.status = 'resolved';
+      state.list = action.payload.items;
+      state.totalItems = action.payload.totalItems;
+      state.perPage = action.payload.perPage;
+      state.page = action.payload.page;
+      state.error = '';
+    },
+    [originsSelectFetchError]: (state) => {
+      state.status = 'error';
+    },
   },
 });
 
@@ -63,6 +90,7 @@ export const {
   setEditable,
   setPage,
   clearProductList,
+  setPerPage
 } = productsSlice.actions;
 
 export default productsSlice.reducer;
