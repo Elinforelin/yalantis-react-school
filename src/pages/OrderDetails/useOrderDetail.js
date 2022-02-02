@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { endpoints } from '../../constants/endpoints';
 import { getOrderDetails } from '../../store/orderDetail/selector';
-import { fetchOrderDetail } from '../../store/orderDetail/actions';
+import { fetchOrderDetailStart } from '../../store/orderDetail/actions';
 
 export const useOrderDetail = () => {
   const dispatch = useDispatch();
@@ -14,7 +14,7 @@ export const useOrderDetail = () => {
   useEffect(() => {
     if (orderId) {
       dispatch(
-        fetchOrderDetail({ endpoints: endpoints.orders.orderDetails(orderId) })
+        fetchOrderDetailStart({ endpoints: endpoints.orders.orderDetails(orderId) })
       );
     }
   }, [dispatch, orderId]);

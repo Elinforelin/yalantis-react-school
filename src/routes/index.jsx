@@ -1,9 +1,4 @@
-import {
-  BrowserRouter as Router,
-  Route,
-  Redirect,
-  Switch,
-} from 'react-router-dom';
+import { Router, Route, Redirect, Switch } from 'react-router-dom';
 
 import ProductsList from '../pages/ProductsList';
 import ShoppingCart from '../pages/ShoppingCart';
@@ -14,10 +9,13 @@ import { routes } from '../constants/routes';
 import MyProductsList from './../pages/MyProductsList';
 import OrdersList from './../pages/OrdersList/index';
 import OrderDetails from './../pages/OrderDetails/index';
+import { createBrowserHistory } from 'history';
+
+export const history = createBrowserHistory();
 
 const RoutesShopPages = () => {
   return (
-    <Router>
+    <Router history={history}>
       <div className="App">
         <Header />
         <Switch>

@@ -1,13 +1,18 @@
-import { createAsyncThunk } from '@reduxjs/toolkit';
+import { createAction, createAsyncThunk } from '@reduxjs/toolkit';
 
 import { fetchHelper } from './../../helpers/fetch';
 
-export const fetchOrders = createAsyncThunk(
-  'orders/fetchApi',
-  async function (props) {
-    const response = await fetchHelper(props);
+export const createOrderStart = createAction('createOrderStart');
+export const createOrderSucces = createAction('createOrderSucces');
+export const createOrderError = createAction('createOrderError');
 
-    const data = await response.json();
-    return data;
-  }
-);
+    // Change logic according to HM#4      
+
+// export const fetchOrders = createAsyncThunk(
+//   'orders/fetchApi',
+//   async function (props) {
+//     const data = await fetchHelper(props);
+
+//     return data;
+//   }
+// );
