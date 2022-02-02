@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { clearProductListConstant } from '../../constants/productsListState';
 import { fetchAllProducts, originsSelectFetchError, originsSelectFetchStart, originsSelectFetchSuccess } from './actions';
 
 const initialState = {
@@ -37,16 +38,7 @@ const productsSlice = createSlice({
       state.editable = action.payload;
     },
     clearProductList(state) {
-      state.list = [];
-      state.perPage = 50;
-      state.totalItems = 0;
-      state.page = 1;
-      state.origins = [];
-      state.minPrice = 0;
-      state.maxPrice = 0;
-      state.status = '';
-      state.error = '';
-      state.editable = false;
+      clearProductListConstant(state)
     },
   },
   extraReducers: {

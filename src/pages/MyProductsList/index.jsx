@@ -18,10 +18,18 @@ import {
   fetchAllProducts,
   originsSelectFetchStart,
 } from '../../store/products/actions';
+import { useUrlSearchParams } from './../../hooks/useUrlSearchParams';
 
 const MyProductsList = () => {
   const dispatch = useDispatch();
   // const { fetch } = useFetchAllProducts();
+  const {
+    pageFromUrl,
+    perPageFromUrl,
+    originsFromUrl,
+    minFromUrl,
+    maxFromUrl,
+  } = useUrlSearchParams();
   const {
     list: products,
     page,
@@ -57,29 +65,6 @@ const MyProductsList = () => {
   };
 
   useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    const pageFromUrl = params.get('page');
-    const perPageFromUrl = params.get('perPage');
-    const originsFromUrl = params.get('origins');
-    const minFromUrl = params.get('minPrice');
-    const maxFromUrl = params.get('maxPrice');
-
-    if (page) {
-      dispatch(setPage(page));
-    }
-    if (perPage) {
-      dispatch(setPerPage(perPage));
-    }
-    if (originsFromUrl) {
-      dispatch(setOrigins(originsFromUrl));
-    }
-    if (+minFromUrl) {
-      dispatch(setMinPrice(+minFromUrl));
-    }
-    if (+maxFromUrl) {
-      dispatch(setMaxPrice(+maxFromUrl));
-    }
-
     dispatch(
       fetchAllProducts({
         endpoints: endpoints.products.paginationList(
@@ -92,7 +77,19 @@ const MyProductsList = () => {
         ),
       })
     );
-  }, [dispatch, maxPrice, minPrice, origins, page, perPage]);
+  }, [
+    dispatch,
+    maxFromUrl,
+    maxPrice,
+    minFromUrl,
+    minPrice,
+    origins,
+    originsFromUrl,
+    page,
+    pageFromUrl,
+    perPage,
+    perPageFromUrl,
+  ]);
 
   useEffect(() => {
     return () => {
